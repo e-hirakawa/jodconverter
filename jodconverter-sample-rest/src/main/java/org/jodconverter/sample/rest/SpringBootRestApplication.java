@@ -19,59 +19,21 @@
 
 package org.jodconverter.sample.rest;
 
-import java.util.Collections;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/** Main application. */
+/**
+ * Main application.
+ */
 @SpringBootApplication
 public class SpringBootRestApplication {
 
-  /**
-   * Main entry point of the application.
-   *
-   * @param args Command line arguments.
-   */
-  public static void main(final String[] args) {
-    SpringApplication.run(SpringBootRestApplication.class, args);
-  }
-
-  /** Swagger configuration. */
-  @Configuration
-  @EnableSwagger2
-  /* default */ static class SwaggerConfig {
-
-    @Bean
-    /* default */ Docket api() {
-      return new Docket(DocumentationType.SWAGGER_2)
-          .useDefaultResponseMessages(false)
-          .select()
-          .apis(RequestHandlerSelectors.basePackage("org.jodconverter.sample.rest"))
-          .paths(PathSelectors.regex("/lool/convert-to.*"))
-          .build()
-          .apiInfo(apiInfo());
+    /**
+     * Main entry point of the application.
+     *
+     * @param args Command line arguments.
+     */
+    public static void main(final String[] args) {
+        SpringApplication.run(SpringBootRestApplication.class, args);
     }
-
-    private ApiInfo apiInfo() {
-      return new ApiInfo(
-          "JODConverter REST API",
-          "JODConverter REST API for Remote conversion. JODConverter automates conversions between office document formats using LibreOffice or Apache OpenOffice.",
-          "0.1",
-          "Terms of service",
-          new Contact("John Doe", "www.jodconverter.org", "johndoe@company.com"),
-          "Apache License Version 2.0",
-          "https://www.apache.org/licenses/LICENSE-2.0",
-          Collections.emptyList());
-    }
-  }
 }
