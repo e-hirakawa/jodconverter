@@ -1,11 +1,11 @@
 server:
-  port: 8080
-  
+  port: 8082
+
 spring:
   servlet:
     multipart:
-      max-file-size: 5MB
-      max-request-size: 10MB
+      max-file-size: 20MB
+      max-request-size: 30MB
   application:
     name: JODConverter Sample Rest Api
 
@@ -26,4 +26,4 @@ jodconverter:
 
 logging:
   level:
-    org.jodconverter: debug
+    org.jodconverter: warn
