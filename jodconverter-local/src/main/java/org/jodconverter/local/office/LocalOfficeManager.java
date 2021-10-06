@@ -20,6 +20,7 @@
 package org.jodconverter.local.office;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -326,8 +327,8 @@ public final class LocalOfficeManager
       try {
         return StringUtils.isBlank(processManagerClass)
             ? this
-            : processManager((ProcessManager) Class.forName(processManagerClass).newInstance());
-      } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
+            : processManager((ProcessManager) Class.forName(processManagerClass).getDeclaredConstructor().newInstance());
+      } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException ex) {
         throw new IllegalArgumentException(
             "Could not create a process manager from the specified class name: "
                 + processManagerClass,
